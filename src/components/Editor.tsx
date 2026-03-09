@@ -61,13 +61,13 @@ export default function Editor({ entries: es, setEntries, editEntry, showToast, 
 
       setEntries(() => next);
 
-      const { error } = await supabase.from('entries').upsert({
-        id: entry.id,
-        content: entry.content,
-        mood: entry.moodEmoji,
-        tags: entry.tags,
-        created_at: new Date().toISOString()
-      });
+      const { error } = await supabase.from('entries').insert({
+  id: entry.id,
+  content: entry.content,
+  mood: entry.moodEmoji,
+  tags: entry.tags,
+  user_id: null
+});
 
       if (error) {
         console.error('Supabase save error:', error);
