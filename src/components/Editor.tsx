@@ -62,11 +62,9 @@ export default function Editor({ entries: es, setEntries, editEntry, showToast, 
       setEntries(() => next);
 
       const { error } = await supabase.from('entries').insert({
-  id: entry.id,
   content: entry.content,
   mood: entry.moodEmoji,
-  tags: entry.tags,
-  user_id: null
+  tags: entry.tags
 });
 
       if (error) {
